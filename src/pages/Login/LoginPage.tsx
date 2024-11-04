@@ -1,15 +1,21 @@
 // src/pages/LoginPage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./LoginPage.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
 
 export const Login: React.FC = () => {
-    const { login } = useAuth(); // Chamar useAuth no nível do componente HOOK CHAMA PRIMEIRO
+    const { login, isAuthenticated } = useAuth(); // Chamar useAuth no nível do componente HOOK CHAMA PRIMEIRO
     const navigate = useNavigate();
     const location = useLocation();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+    useEffect (() =>{
+        if(isAuthenticated) {
+            navigate('/')
+        }
+    }, [isAuthenticated, navigate])
   
   //const [error, setError] = useState<string | null>(null); // Definindo o estado de erro    
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
