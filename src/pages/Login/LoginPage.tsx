@@ -45,9 +45,7 @@ export const Login: React.FC = () => {
             //console.log(data.token)        
             login(data.token)
             const from = location.state?.from ||"/"
-            navigate(from)
-              //localStorage.setItem('token', data.token)                
-              
+            navigate(from)           
               //onNotify(data.message, ToastType.SUCCESS)               
           }
       } catch (error) {
