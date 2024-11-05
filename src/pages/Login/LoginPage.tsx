@@ -6,8 +6,8 @@ import { useAuth } from '../../context/AuthContext';
 
 export const Login: React.FC = () => {
     const { login, isAuthenticated } = useAuth(); // Chamar useAuth no nível do componente HOOK CHAMA PRIMEIRO
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate = useNavigate()
+    const location = useLocation()
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 

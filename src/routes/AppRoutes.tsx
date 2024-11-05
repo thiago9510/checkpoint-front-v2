@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation, } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import LoginPage from "../pages/Login/LoginPage";
 import HomePage from "../pages/Home/HomePage";
 import NotFoundPage from "../pages/NotFund/NotFundPage";
@@ -9,22 +9,29 @@ import { MuiNavbar } from "../components/NavBar/MuiNavbar";
 export const AppRoutes: React.FC = () => {
     const location = useLocation(); //pega localização atual
 
-    return (
-        <>
-            {location.pathname !== '/login' && <MuiNavbar />} {/* Renderiza a Navbar se não estiver na página de login */}
+    const notAllowed = ['/login', '/404']
 
-            <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route
-                    path="/"
-                    element={
-                        <ProtectedRoute>
-                            <HomePage />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route path="*" element={<NotFoundPage />} />{/* Rota de "página não encontrada" */}
-            </Routes>
-        </>
+    return (
+    <>
+        {!notAllowed.includes(location.pathname) && <MuiNavbar />}
+        {/* Não renderiza a componente caso a página não uma página permitida */}
+
+
+        <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+                path="/"
+                element={
+                    <ProtectedRoute>
+                        <HomePage />
+                    </ProtectedRoute>
+                }
+            />
+
+            
+            <Route path="/404" element={<NotFoundPage />} />{/* Rota de "página não encontrada" */}
+            <Route path="*" element={<Navigate to="/404" replace />} />{/* Redireciona qualquer rota desconhecida para "/404" */}
+        </Routes>
+    </>
     )
 }

@@ -17,8 +17,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 //provedor e autenticação
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(true)
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(true)    
 
     useEffect(() =>{
         const token = localStorage.getItem('token')
@@ -26,8 +25,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setIsAuthenticated(true)           
         } else{
             setIsAuthenticated(false)
-            localStorage.removeItem('token')
-            navigate('/login')
+            localStorage.removeItem('token')            
         }
         setLoading(false)//ativa para falso após a verificação inicial     
     }, [])
