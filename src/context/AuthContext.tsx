@@ -1,6 +1,7 @@
 //AutheContext Exemple
 import { isExpired, decodeToken } from "react-jwt"
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
 interface AuthContextType {
     isAuthenticated: boolean
@@ -17,12 +18,17 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(true)
+    const navigate = useNavigate();
 
     useEffect(() =>{
         const token = localStorage.getItem('token')
         if(token && !isExpired(token)){
-            setIsAuthenticated(true);            
-        } 
+            setIsAuthenticated(true)           
+        } else{
+            setIsAuthenticated(false)
+            localStorage.removeItem('token')
+            navigate('/login')
+        }
         setLoading(false)//ativa para falso após a verificação inicial     
     }, [])
 

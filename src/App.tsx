@@ -1,6 +1,7 @@
 
 //import { Card } from './components/Card/Card'
 //import { Header } from './components/Header/Header'
+import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { AppRoutes } from './routes/AppRoutes'
 
@@ -9,7 +10,9 @@ function App() {
 
   return (
     <AuthProvider>
-      <AppRoutes />
+      <BrowserRouter> {/* Subistituindo o Router */}
+        <AppRoutes />
+      </BrowserRouter>      
     </AuthProvider>
   )
 }
