@@ -2,6 +2,7 @@
 import React from 'react';
 import AppLayout from '../../components/AppLayout/AppLayout';
 
+
 const HomePage: React.FC = () => {
   return (
     <AppLayout> {/* Configura o Layout padrão para página */}

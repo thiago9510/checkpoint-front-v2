@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Box, Drawer, List, ListItem, ListItemText, CssBaseline } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Box, Drawer, List, ListItem, ListItemText, CssBaseline, ButtonBase } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
+import { NavBar } from './NavBar/NavBar';
 
 const drawerWidth = 240;
 
@@ -10,12 +11,16 @@ interface AppLayoutProps {
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);    
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const toggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
     };
 
+    const handleClick = (index: number) => {
+        setSelectedIndex(index);  // Atualiza o índice do item selecionado
+    };
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -32,37 +37,21 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Meu App
+                    <Typography variant="h6" noWrap component="div" fontStyle={'initial'}>
+                        check-point
                     </Typography>
                 </Toolbar>
             </AppBar>
 
-            {/* Barra Lateral */}
-            <Drawer
-                variant="permanent"
-                open={isDrawerOpen}
-                sx={{
-                    width: isDrawerOpen ? drawerWidth : '60px',
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: isDrawerOpen ? drawerWidth : '60px',
-                        boxSizing: 'border-box',
-                        transition: 'width 0.3s',
-                    },
-                }}
-            >
-                <Toolbar />
-                <Box sx={{ overflow: 'auto' }}>
-                    <List>
-                        <ListItem component="button">
-                            <HomeIcon />
-                            <ListItemText primary="Home" sx={{ ml: 1, display: isDrawerOpen ? 'block' : 'none' }} />
-                        </ListItem>
-                        {/* Adicione mais itens de navegação aqui */}
-                    </List>
-                </Box>
-            </Drawer>
+            {/* Barra Lateral*/} 
+            <Box component="nav">
+            <NavBar 
+             isDrawerOpen={isDrawerOpen} // Passando o estado
+             toggleDrawer={toggleDrawer} // Passando a função de toggle
+            
+            />
+                {/* Você pode colocar aqui o seu Drawer ou qualquer outro componente de navegação */}
+            </Box>
 
             {/* Conteúdo Principal */}
             <Box
@@ -71,7 +60,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                     flexGrow: 1,
                     p: 3,
                     marginLeft: isDrawerOpen ? `${drawerWidth}px` : '60px',
-                    transition: 'margin-left 0.3s',
+                    transition: 'margin-left 0.3s'
                 }}
             >
                 <Toolbar />
