@@ -1,10 +1,21 @@
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
+import { ButtonBase, ListItemText } from "@mui/material";
+import { NavItemProps } from "./NavBarType";
+import { navItemStyles } from "./NavBarStyle";
 
-
-export const navItems = [
-    { id: 1, name: 'Home', icon: <HomeIcon />, path: '/home' },
-    { id: 2, name: 'About', icon: <MenuIcon />, path: '/about' },
-    { id: 3, name: 'Settings', icon: <HomeIcon />, path: '/settings' },
-    // Adicione mais itens conforme necessário
-];
+//RETORNA BOTÃO COM BASE NA PROPRIEDADE
+export const NavItem: React.FC<NavItemProps> = ({ icon, name, selected, onClick }) => {
+    return (
+        <ButtonBase
+            onClick={onClick}
+            component="button"
+            sx={{
+                ...navItemStyles.default,
+                ...(selected ? navItemStyles.selected : {}),
+                '&:hover': navItemStyles.hover,
+            }}
+        >
+            {icon}
+            <ListItemText primary={name} sx={{ ml: 1 }} />
+        </ButtonBase>
+    );
+};

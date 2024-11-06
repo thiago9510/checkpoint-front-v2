@@ -3,6 +3,7 @@ import { AppBar, Toolbar, IconButton, Typography, Box, Drawer, List, ListItem, L
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { NavBar } from './NavBar/NavBar';
+import { TopBar } from './TopBar/TopBar';
 
 const drawerWidth = 240;
 
@@ -26,32 +27,10 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             <CssBaseline />
 
             {/* Barra Superior */}
-            <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={toggleDrawer}
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap component="div" fontStyle={'initial'}>
-                        check-point
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+            <TopBar toggleDrawer={toggleDrawer} />
 
             {/* Barra Lateral*/} 
-            <Box component="nav">
-            <NavBar 
-             isDrawerOpen={isDrawerOpen} // Passando o estado
-             toggleDrawer={toggleDrawer} // Passando a função de toggle
-            
-            />
-                {/* Você pode colocar aqui o seu Drawer ou qualquer outro componente de navegação */}
-            </Box>
+            <NavBar isDrawerOpen={isDrawerOpen}   toggleDrawer={toggleDrawer}/>    
 
             {/* Conteúdo Principal */}
             <Box
