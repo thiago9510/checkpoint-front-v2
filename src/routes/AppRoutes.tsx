@@ -4,7 +4,7 @@ import LoginPage from "../pages/Login/LoginPage";
 import HomePage from "../pages/Home/HomePage";
 import NotFoundPage from "../pages/NotFund/NotFundPage";
 import ProtectedRoute from "../components/ProtectedRouter/ProtectedRoute ";
-import { MuiNavbar } from "../components/NavBar/MuiNavbar";
+import PontoEletronico from "../pages/PontoEletronico/PontoEletronico";
 
 export const AppRoutes: React.FC = () => {
     const location = useLocation(); //pega localização atual
@@ -13,9 +13,8 @@ export const AppRoutes: React.FC = () => {
 
     return (
     <>
-        {!notAllowed.includes(location.pathname) && <MuiNavbar />}
+        {!notAllowed.includes(location.pathname)}
         {/* Não renderiza a componente caso a página não uma página permitida */}
-
 
         <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -23,12 +22,19 @@ export const AppRoutes: React.FC = () => {
                 path="/"
                 element={
                     <ProtectedRoute>
-                        <HomePage />
+                        <HomePage />                        
+                    </ProtectedRoute>
+                }
+            />
+                        <Route
+                path="/ponto/eletronico"
+                element={
+                    <ProtectedRoute>
+                        <PontoEletronico />                        
                     </ProtectedRoute>
                 }
             />
 
-            
             <Route path="/404" element={<NotFoundPage />} />{/* Rota de "página não encontrada" */}
             <Route path="*" element={<Navigate to="/404" replace />} />{/* Redireciona qualquer rota desconhecida para "/404" */}
         </Routes>

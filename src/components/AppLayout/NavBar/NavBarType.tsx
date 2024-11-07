@@ -2,6 +2,7 @@ export type NavItemProps = {
   icon: React.ReactNode;
   name: string;
   selected: boolean;
+  to: string;
   onClick: () => void;
 };
 

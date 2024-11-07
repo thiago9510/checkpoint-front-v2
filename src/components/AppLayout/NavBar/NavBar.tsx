@@ -30,6 +30,7 @@ export const NavBar: React.FC<NavBarProps> = ({ isDrawerOpen, toggleDrawer }) =>
                             name={item.name}
                             selected={selectedIndex === index}
                             onClick={() => handleClick(index)}
+                            to={item.path}
                         />
                     ))}
                 </List>
