@@ -23,7 +23,7 @@ export const navItemStyles = {
 // Estilos para o Drawer
 export const drawerStyles = {
     root: {
-      width: 240,
+      width: 0,
       flexShrink: 0,
       '& .MuiDrawer-paper': {
         width: 240,

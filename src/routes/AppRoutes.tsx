@@ -12,32 +12,32 @@ export const AppRoutes: React.FC = () => {
     const notAllowed = ['/login', '/404']
 
     return (
-    <>
-        {!notAllowed.includes(location.pathname)}
-        {/* Não renderiza a componente caso a página não uma página permitida */}
+        <>
+            {!notAllowed.includes(location.pathname)}
+            {/* Não renderiza a componente caso a página não uma página permitida */}
 
-        <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-                path="/"
-                element={
-                    <ProtectedRoute>
-                        <HomePage />                        
-                    </ProtectedRoute>
-                }
-            />
-                        <Route
-                path="/ponto/eletronico"
-                element={
-                    <ProtectedRoute>
-                        <PontoEletronico />                        
-                    </ProtectedRoute>
-                }
-            />
+            <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route
+                    path="/"
+                    element={
+                        <ProtectedRoute>
+                            <HomePage />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/ponto/eletronico"
+                    element={
+                        <ProtectedRoute>
+                            <PontoEletronico />
+                        </ProtectedRoute>
+                    }
+                />
 
-            <Route path="/404" element={<NotFoundPage />} />{/* Rota de "página não encontrada" */}
-            <Route path="*" element={<Navigate to="/404" replace />} />{/* Redireciona qualquer rota desconhecida para "/404" */}
-        </Routes>
-    </>
+                <Route path="/404" element={<NotFoundPage />} />{/* Rota de "página não encontrada" */}
+                <Route path="*" element={<Navigate to="/404" replace />} />{/* Redireciona qualquer rota desconhecida para "/404" */}
+            </Routes>
+        </>
     )
 }

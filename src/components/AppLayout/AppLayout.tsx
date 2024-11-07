@@ -12,7 +12,7 @@ interface AppLayoutProps {
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);    
+    const [isDrawerOpen, setIsDrawerOpen] = useState(true);    
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const toggleDrawer = () => {
@@ -37,8 +37,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                 component="main"
                 sx={{
                     flexGrow: 1,
-                    p: 3,
-                    marginLeft: isDrawerOpen ? `${drawerWidth}px` : '60px',
+                    p: 0,
+                    marginLeft: isDrawerOpen ? `${drawerWidth}px` : '0px',
                     transition: 'margin-left 0.3s'
                 }}
             >

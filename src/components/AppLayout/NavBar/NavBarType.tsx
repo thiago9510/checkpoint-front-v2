@@ -9,4 +9,6 @@ export type NavItemProps = {
 export interface NavBarProps {
   isDrawerOpen: boolean;
   toggleDrawer: () => void;
+  //isDrawerCollapsed: () => void;  
+  //toggleDrawerCollapse: () => void;
 }

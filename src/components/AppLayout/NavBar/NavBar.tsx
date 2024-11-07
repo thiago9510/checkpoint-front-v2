@@ -21,7 +21,7 @@ export const NavBar: React.FC<NavBarProps> = ({ isDrawerOpen, toggleDrawer }) =>
 
         >
             <Toolbar />
-            <Box sx={{ overflow: 'auto' }}>
+            <Box sx={{ overflow: 'auto'}}>
                 <List>
                     {navItems.map((item, index) => (
                         <NavItem

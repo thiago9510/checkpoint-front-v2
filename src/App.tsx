@@ -4,12 +4,15 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { AppRoutes } from './routes/AppRoutes'
+import "normalize.css";
+
+
 
 
 function App() {
 
   return (
-    <AuthProvider>
+    <AuthProvider>      
       <BrowserRouter> {/* Subistituindo o Router */}
         <AppRoutes />
       </BrowserRouter>      
