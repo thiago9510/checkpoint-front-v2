@@ -54,7 +54,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                     boxSizing: 'border-box',
                     transition: 'width 0.3s',
                     boxShadow: 5,
-                    background: '#f0f0f0',
+                    background: '#FFFFFF',
                     borderRadius: 4
                 },
             }}

@@ -39,7 +39,9 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                     flexGrow: 1,
                     p: 0,
                     marginLeft: isDrawerOpen ? `${drawerWidth}px` : '0px',
-                    transition: 'margin-left 0.3s'
+                    transition: 'margin-left 0.3s',
+                    display: 'grid',
+                    placeItems: 'center'
                 }}
             >
                 <Toolbar />

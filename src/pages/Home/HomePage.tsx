@@ -1,6 +1,9 @@
 // src/pages/HomePage.tsx
 import React from 'react';
 import AppLayout from '../../components/AppLayout/AppLayout';
+import PointRegistration from '../../components/PointModal/PointRegistration/PointRegistration';
+
+
 
 
 const HomePage: React.FC = () => {
@@ -9,6 +12,7 @@ const HomePage: React.FC = () => {
     <div>
       <h1>Home Page</h1>
       <p>Welcome to the Home Page!</p>
+      <PointRegistration  />      {/* teste botão do modal de bater ponto */}      
     </div>
     </AppLayout>
   );

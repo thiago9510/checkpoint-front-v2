@@ -29,7 +29,7 @@ export const drawerStyles = {
         width: 240,
         boxSizing: 'border-box',
         boxShadow: 5,
-        background: '#f0f0f0',
+        background: '#FFFFFF',
         borderRadius: 4,
       },
     },
