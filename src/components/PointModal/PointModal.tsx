@@ -21,13 +21,39 @@ const PointModal: React.FC<PointModalProps> = ({ open, onClose, onPeriodChange, 
 
     const handleClose = () => onClose();
 
-    const handleRegisterPoint = () => {
+     // Função assíncrona para registrar o ponto
+    const handleRegisterPoint = async () => {
         if (selectedPeriod) {
             const now = new Date();
             setTimestamp({
                 time: now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
                 date: now.toLocaleDateString('pt-BR'),
             });
+
+            //fetch
+            try {
+                const token = localStorage.getItem('token');
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ registroPonto_tipo: selectedPeriod }),
+                };
+
+                const response = await fetch('http://localhost:3335/api/registrarPonto', options);             
+
+                const data = await response.json();              
+                alert(data.name)
+                // Alert/poopUP
+            } catch (error) {
+                console.error('Erro ao registrar ponto:', error);
+                alert(error);
+            }
+
+
+
         } else {
             alert("Por favor, selecione um período.");
         }
@@ -59,9 +85,9 @@ const PointModal: React.FC<PointModalProps> = ({ open, onClose, onPeriodChange, 
                         <em>Selecione o período</em>
                     </MenuItem>
                     <MenuItem value="Entrada">Entrada</MenuItem>
-                    <MenuItem value="Início intervalo">Início intervalo</MenuItem>
-                    <MenuItem value="Retorno intervalo">Retorno intervalo</MenuItem>
-                    <MenuItem value="Saída">Saída</MenuItem>
+                    <MenuItem value="Inicio_intervalo">Início intervalo</MenuItem>
+                    <MenuItem value="Fim_intervalo">Retorno intervalo</MenuItem>
+                    <MenuItem value="Saida">Saída</MenuItem>
                 </Select>
 
                 <Button
